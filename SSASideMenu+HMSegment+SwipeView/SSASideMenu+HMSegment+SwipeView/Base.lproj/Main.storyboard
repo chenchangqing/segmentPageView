@@ -48,7 +48,7 @@
         <!--View Controller-->
         <scene sceneID="amj-Ap-gq9">
             <objects>
-                <viewController id="Isk-3z-akN" sceneMemberID="viewController">
+                <viewController id="Isk-3z-akN" customClass="ViewController" customModule="SSASideMenu_HMSegment_SwipeView" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ST6-MU-Rhg"/>
                         <viewControllerLayoutGuide type="bottom" id="u6c-gD-O4P"/>
