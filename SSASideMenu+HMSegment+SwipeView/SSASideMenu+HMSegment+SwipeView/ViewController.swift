@@ -23,6 +23,9 @@ class ViewController: UIViewController, SwipeViewDataSource, SwipeViewDelegate, 
     
     let kHorizontalToLeftMinMoveDistance:CGFloat = 30
     
+    // MARK: - 页面切换时间
+    let kDuration:Double = 0.3
+    
     // MARK: - Items
     
     var items:OrderedDictionary<NSNumber,UIColor> = {
@@ -77,7 +80,7 @@ class ViewController: UIViewController, SwipeViewDataSource, SwipeViewDelegate, 
         
         segmentedControl.indexChangeBlock = { (index:NSInteger) in
         
-            self.swipeView.scrollToPage(index, duration: 0.3)
+            self.swipeView.scrollToPage(index, duration: self.kDuration)
         }
         
         self.view.addSubview(segmentedControl)
@@ -192,10 +195,10 @@ class ViewController: UIViewController, SwipeViewDataSource, SwipeViewDelegate, 
             
             if fabs(translation.x) > kHorizontalToLeftMinMoveDistance {
                 
-                swipeView.scrollToPage(1, duration: 0.3)
+                swipeView.scrollToPage(1, duration: kDuration)
             } else {
                 
-                swipeView.scrollToPage(0, duration: 0.3)
+                swipeView.scrollToPage(0, duration: kDuration)
             }
         }
     }
