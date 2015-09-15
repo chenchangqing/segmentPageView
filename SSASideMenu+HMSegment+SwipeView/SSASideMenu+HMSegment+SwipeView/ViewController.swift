@@ -15,6 +15,14 @@ class ViewController: UIViewController, SwipeViewDataSource, SwipeViewDelegate, 
     @IBOutlet var segmentedControl  : HMSegmentedControl!
     @IBOutlet var swipeView         : SwipeView!
     
+    // MARK: - 侧边栏是否显示
+    
+    var sideMenuIsShow  = false
+    
+    // MARK: - 水平向左触发下一页最小移动距离
+    
+    let kHorizontalToLeftMinMoveDistance:CGFloat = 30
+    
     // MARK: - Items
     
     var items:OrderedDictionary<NSNumber,UIColor> = {
@@ -67,6 +75,11 @@ class ViewController: UIViewController, SwipeViewDataSource, SwipeViewDelegate, 
         segmentedControl.shouldAnimateUserSelection  = true
         segmentedControl.selectionStyle              = HMSegmentedControlSelectionStyleFullWidthStripe
         
+        segmentedControl.indexChangeBlock = { (index:NSInteger) in
+        
+            self.swipeView.scrollToPage(index, duration: 0.3)
+        }
+        
         self.view.addSubview(segmentedControl)
     }
     
@@ -78,7 +91,6 @@ class ViewController: UIViewController, SwipeViewDataSource, SwipeViewDelegate, 
         swipeView.dataSource = self
         swipeView.bounces = false
         swipeView.scrollEnabled = false
-//        swipeView.wrapEnabled = true
     }
     
     // MARK: - Set Up SSASideMenu
@@ -136,22 +148,21 @@ class ViewController: UIViewController, SwipeViewDataSource, SwipeViewDelegate, 
     
     func swipeViewDidScroll(swipeView: SwipeView!) {
         
+        updateScollEnabled()
     }
     
-    func swipeViewDidEndDecelerating(swipeView: SwipeView!) {
-        println("swipeViewDidEndDecelerating:\(swipeView.currentPage)")
+    func swipeViewCurrentItemIndexDidChange(swipeView: SwipeView!) {
         
-        if swipeView.currentPage == 0 {
+        self.segmentedControl.setSelectedSegmentIndex(UInt(swipeView.currentItemIndex), animated: true)
+    }
+    
+    private func updateScollEnabled() {
+        
+        if swipeView.scrollOffset == 0 {
             
             swipeView.scrollEnabled = false
         }
-        
-    }
-    
-    func swipeViewDidEndScrollingAnimation(swipeView: SwipeView!) {
-        println("swipeViewDidEndScrollingAnimation:\(swipeView.currentPage)")
-        
-        if swipeView.currentPage == 1 {
+        if swipeView.scrollOffset == 1 {
             
             swipeView.scrollEnabled = true
         }
@@ -163,22 +174,40 @@ class ViewController: UIViewController, SwipeViewDataSource, SwipeViewDelegate, 
         
         let translation = recongnizer.translationInView(self.swipeView)
         
-        if translation.x < 0 {
+        if translation.x >= 0
+            || sideMenuIsShow
+                || swipeView.scrolling
+                    || swipeView.decelerating {
+            return
+        }
+        
+        let percent = fabs(translation.x)/self.swipeView.bounds.width
+        
+        if percent > swipeView.scrollOffset {
             
-            let percent = fabs(translation.x)/self.swipeView.bounds.width
-            swipeView.scrollOffset = CGFloat(swipeView.currentItemIndex) + percent
+            swipeView.scrollOffset = percent
+        }
+        
+        if recongnizer.state == UIGestureRecognizerState.Ended {
             
-            if recongnizer.state == UIGestureRecognizerState.Ended {
+            if fabs(translation.x) > kHorizontalToLeftMinMoveDistance {
                 
-                if fabs(translation.x) > 30 {
-                    
-                    swipeView.scrollToPage(1, duration: 0.3)
-                } else {
-                    
-                    swipeView.scrollToPage(0, duration: 0.3)
-                }
+                swipeView.scrollToPage(1, duration: 0.3)
+            } else {
+                
+                swipeView.scrollToPage(0, duration: 0.3)
             }
         }
+    }
+    
+    func sideMenuDidShowMenuViewController(sideMenu: SSASideMenu, menuViewController: UIViewController) {
+        
+        sideMenuIsShow = true
+    }
+    
+    func sideMenuDidHideMenuViewController(sideMenu: SSASideMenu, menuViewController: UIViewController) {
+        
+        sideMenuIsShow = false
     }
 }
 
