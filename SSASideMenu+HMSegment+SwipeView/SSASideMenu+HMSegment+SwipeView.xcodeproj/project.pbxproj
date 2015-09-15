@@ -13,6 +13,9 @@
 		E6AEB8391BA7D5C0004012DE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6AEB8381BA7D5C0004012DE /* Images.xcassets */; };
 		E6AEB83C1BA7D5C0004012DE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6AEB83A1BA7D5C0004012DE /* LaunchScreen.xib */; };
 		E6AEB8481BA7D5C1004012DE /* SSASideMenu_HMSegment_SwipeViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AEB8471BA7D5C1004012DE /* SSASideMenu_HMSegment_SwipeViewTests.swift */; };
+		E6AEB8591BA7D68D004012DE /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = E6AEB8531BA7D68D004012DE /* HMSegmentedControl.m */; };
+		E6AEB85A1BA7D68D004012DE /* SSASideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AEB8551BA7D68D004012DE /* SSASideMenu.swift */; };
+		E6AEB85B1BA7D68D004012DE /* SwipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6AEB8581BA7D68D004012DE /* SwipeView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,12 @@
 		E6AEB8411BA7D5C1004012DE /* SSASideMenu+HMSegment+SwipeViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SSASideMenu+HMSegment+SwipeViewTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6AEB8461BA7D5C1004012DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6AEB8471BA7D5C1004012DE /* SSASideMenu_HMSegment_SwipeViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSASideMenu_HMSegment_SwipeViewTests.swift; sourceTree = "<group>"; };
+		E6AEB8521BA7D68D004012DE /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
+		E6AEB8531BA7D68D004012DE /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
+		E6AEB8551BA7D68D004012DE /* SSASideMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSASideMenu.swift; sourceTree = "<group>"; };
+		E6AEB8571BA7D68D004012DE /* SwipeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeView.h; sourceTree = "<group>"; };
+		E6AEB8581BA7D68D004012DE /* SwipeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeView.m; sourceTree = "<group>"; };
+		E6AEB85F1BA7D7F2004012DE /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +68,7 @@
 		E6AEB8231BA7D5C0004012DE = {
 			isa = PBXGroup;
 			children = (
+				E6AEB85F1BA7D7F2004012DE /* Header.h */,
 				E6AEB82E1BA7D5C0004012DE /* SSASideMenu+HMSegment+SwipeView */,
 				E6AEB8441BA7D5C1004012DE /* SSASideMenu+HMSegment+SwipeViewTests */,
 				E6AEB82D1BA7D5C0004012DE /* Products */,
@@ -77,6 +87,9 @@
 		E6AEB82E1BA7D5C0004012DE /* SSASideMenu+HMSegment+SwipeView */ = {
 			isa = PBXGroup;
 			children = (
+				E6AEB8511BA7D68D004012DE /* HMSegmentedControl */,
+				E6AEB8541BA7D68D004012DE /* SSASideMenu */,
+				E6AEB8561BA7D68D004012DE /* SwipeView */,
 				E6AEB8311BA7D5C0004012DE /* AppDelegate.swift */,
 				E6AEB8331BA7D5C0004012DE /* ViewController.swift */,
 				E6AEB8351BA7D5C0004012DE /* Main.storyboard */,
@@ -110,6 +123,32 @@
 				E6AEB8461BA7D5C1004012DE /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E6AEB8511BA7D68D004012DE /* HMSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				E6AEB8521BA7D68D004012DE /* HMSegmentedControl.h */,
+				E6AEB8531BA7D68D004012DE /* HMSegmentedControl.m */,
+			);
+			path = HMSegmentedControl;
+			sourceTree = "<group>";
+		};
+		E6AEB8541BA7D68D004012DE /* SSASideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				E6AEB8551BA7D68D004012DE /* SSASideMenu.swift */,
+			);
+			path = SSASideMenu;
+			sourceTree = "<group>";
+		};
+		E6AEB8561BA7D68D004012DE /* SwipeView */ = {
+			isa = PBXGroup;
+			children = (
+				E6AEB8571BA7D68D004012DE /* SwipeView.h */,
+				E6AEB8581BA7D68D004012DE /* SwipeView.m */,
+			);
+			path = SwipeView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,8 +251,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6AEB8591BA7D68D004012DE /* HMSegmentedControl.m in Sources */,
+				E6AEB85A1BA7D68D004012DE /* SSASideMenu.swift in Sources */,
 				E6AEB8341BA7D5C0004012DE /* ViewController.swift in Sources */,
 				E6AEB8321BA7D5C0004012DE /* AppDelegate.swift in Sources */,
+				E6AEB85B1BA7D68D004012DE /* SwipeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,6 +385,7 @@
 				INFOPLIST_FILE = "SSASideMenu+HMSegment+SwipeView/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = Header.h;
 			};
 			name = Debug;
 		};
@@ -353,6 +396,7 @@
 				INFOPLIST_FILE = "SSASideMenu+HMSegment+SwipeView/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = Header.h;
 			};
 			name = Release;
 		};
