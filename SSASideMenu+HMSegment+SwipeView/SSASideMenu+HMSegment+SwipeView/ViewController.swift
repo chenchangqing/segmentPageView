@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, SwipeViewDataSource, SwipeViewDelegate {
+class ViewController: UIViewController, SwipeViewDataSource, SwipeViewDelegate, SSASideMenuDelegate {
     
     // MARK: - UI HMSegmentedControl/SwipeView
     
@@ -17,13 +17,18 @@ class ViewController: UIViewController, SwipeViewDataSource, SwipeViewDelegate {
     
     // MARK: - Items
     
-    var items:[NSNumber:UIColor] = [
-        0:UIColor.greenColor(),
-        1:UIColor.redColor(),
-        2:UIColor.grayColor(),
-        3:UIColor.blueColor(),
-        4:UIColor.magentaColor()
-    ]
+    var items:OrderedDictionary<NSNumber,UIColor> = {
+    
+        var items = OrderedDictionary<NSNumber,UIColor>()
+        
+        items[0] = UIColor.greenColor()
+        items[1] = UIColor.redColor()
+        items[2] = UIColor.grayColor()
+        items[3] = UIColor.blueColor()
+        items[4] = UIColor.magentaColor()
+        
+        return items
+    }()
     
     // MARK: - Life Cycle
 
@@ -37,6 +42,7 @@ class ViewController: UIViewController, SwipeViewDataSource, SwipeViewDelegate {
         
         swipeView.delegate = nil
         swipeView.dataSource = nil
+        self.sideMenuViewController?.delegate = nil
     }
 
     // MARK: - Set Up
@@ -45,6 +51,7 @@ class ViewController: UIViewController, SwipeViewDataSource, SwipeViewDelegate {
         
         setUpSegmentedControl()
         setUpSwipeView()
+        setUpSSASideMenu()
     }
     
     // MARK: - Set Up SegmentedControl
@@ -69,6 +76,16 @@ class ViewController: UIViewController, SwipeViewDataSource, SwipeViewDelegate {
         
         swipeView.delegate = self
         swipeView.dataSource = self
+        swipeView.bounces = false
+        swipeView.scrollEnabled = false
+//        swipeView.wrapEnabled = true
+    }
+    
+    // MARK: - Set Up SSASideMenu
+    
+    private func setUpSSASideMenu() {
+        
+        self.sideMenuViewController?.delegate = self
     }
     
     // MARK: - SwipeViewDataSource
@@ -96,8 +113,8 @@ class ViewController: UIViewController, SwipeViewDataSource, SwipeViewDelegate {
             label = view.viewWithTag(1) as? UILabel
         }
         
-        let key     = items.keys.array[index]
-        let value   = items.values.array[index]
+        let key     = items.keys[index]
+        let value   = items[key]
         
         label?.text = "\(key)"
         resultView.backgroundColor = value
@@ -115,6 +132,53 @@ class ViewController: UIViewController, SwipeViewDataSource, SwipeViewDelegate {
     func swipeViewItemSize(swipeView: SwipeView!) -> CGSize {
         
         return self.swipeView.bounds.size
+    }
+    
+    func swipeViewDidScroll(swipeView: SwipeView!) {
+        
+    }
+    
+    func swipeViewDidEndDecelerating(swipeView: SwipeView!) {
+        println("swipeViewDidEndDecelerating:\(swipeView.currentPage)")
+        
+        if swipeView.currentPage == 0 {
+            
+            swipeView.scrollEnabled = false
+        }
+        
+    }
+    
+    func swipeViewDidEndScrollingAnimation(swipeView: SwipeView!) {
+        println("swipeViewDidEndScrollingAnimation:\(swipeView.currentPage)")
+        
+        if swipeView.currentPage == 1 {
+            
+            swipeView.scrollEnabled = true
+        }
+    }
+    
+    // MARK: - SSASideMenuDelegate
+    
+    func sideMenuDidRecognizePanGesture(sideMenu: SSASideMenu, recongnizer: UIPanGestureRecognizer) {
+        
+        let translation = recongnizer.translationInView(self.swipeView)
+        
+        if translation.x < 0 {
+            
+            let percent = fabs(translation.x)/self.swipeView.bounds.width
+            swipeView.scrollOffset = CGFloat(swipeView.currentItemIndex) + percent
+            
+            if recongnizer.state == UIGestureRecognizerState.Ended {
+                
+                if fabs(translation.x) > 30 {
+                    
+                    swipeView.scrollToPage(1, duration: 0.3)
+                } else {
+                    
+                    swipeView.scrollToPage(0, duration: 0.3)
+                }
+            }
+        }
     }
 }
 

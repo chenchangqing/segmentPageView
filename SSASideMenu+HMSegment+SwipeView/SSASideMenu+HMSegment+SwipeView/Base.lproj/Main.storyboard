@@ -21,6 +21,7 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="contentViewStoryboardID" value="FirstViewController"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="leftMenuViewStoryboardID" value="LeftMenuViewController"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="parallaxEnabled" value="NO"/>
                     </userDefinedRuntimeAttributes>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

@@ -16,6 +16,7 @@
 		E6AEB8591BA7D68D004012DE /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = E6AEB8531BA7D68D004012DE /* HMSegmentedControl.m */; };
 		E6AEB85A1BA7D68D004012DE /* SSASideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AEB8551BA7D68D004012DE /* SSASideMenu.swift */; };
 		E6AEB85B1BA7D68D004012DE /* SwipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6AEB8581BA7D68D004012DE /* SwipeView.m */; };
+		E6AEB8621BA802F1004012DE /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AEB8611BA802F1004012DE /* OrderedDictionary.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		E6AEB8571BA7D68D004012DE /* SwipeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeView.h; sourceTree = "<group>"; };
 		E6AEB8581BA7D68D004012DE /* SwipeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeView.m; sourceTree = "<group>"; };
 		E6AEB85F1BA7D7F2004012DE /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		E6AEB8611BA802F1004012DE /* OrderedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 		E6AEB82E1BA7D5C0004012DE /* SSASideMenu+HMSegment+SwipeView */ = {
 			isa = PBXGroup;
 			children = (
+				E6AEB8601BA802F1004012DE /* OrderedDictionary */,
 				E6AEB8511BA7D68D004012DE /* HMSegmentedControl */,
 				E6AEB8541BA7D68D004012DE /* SSASideMenu */,
 				E6AEB8561BA7D68D004012DE /* SwipeView */,
@@ -149,6 +152,14 @@
 				E6AEB8581BA7D68D004012DE /* SwipeView.m */,
 			);
 			path = SwipeView;
+			sourceTree = "<group>";
+		};
+		E6AEB8601BA802F1004012DE /* OrderedDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				E6AEB8611BA802F1004012DE /* OrderedDictionary.swift */,
+			);
+			path = OrderedDictionary;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,6 +265,7 @@
 				E6AEB8591BA7D68D004012DE /* HMSegmentedControl.m in Sources */,
 				E6AEB85A1BA7D68D004012DE /* SSASideMenu.swift in Sources */,
 				E6AEB8341BA7D5C0004012DE /* ViewController.swift in Sources */,
+				E6AEB8621BA802F1004012DE /* OrderedDictionary.swift in Sources */,
 				E6AEB8321BA7D5C0004012DE /* AppDelegate.swift in Sources */,
 				E6AEB85B1BA7D68D004012DE /* SwipeView.m in Sources */,
 			);

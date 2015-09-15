@@ -229,7 +229,7 @@ class SSASideMenu: UIViewController, UIGestureRecognizerDelegate {
     // MARK : Public Properties: SideMenu
     @IBInspectable var animationDuration: Float = 0.35
     @IBInspectable var panGestureEnabled: Bool = true
-    @IBInspectable var panDirection: SSASideMenuPanDirection = .Edge
+    @IBInspectable var panDirection: SSASideMenuPanDirection = SSASideMenuPanDirection.EveryWhere
     @IBInspectable var type: SSASideMenuType = .Scale
     @IBInspectable var panMinimumOpenThreshold: UInt = 60
     @IBInspectable var menuViewControllerTransformation: CGAffineTransform = CGAffineTransformMakeScale(1.5, 1.5)
